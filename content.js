@@ -295,7 +295,7 @@
 
   function attachDragBehavior(handle) {
     handle.addEventListener("pointerdown", (event) => {
-      if (event.button !== 0) {
+      if (event.button !== 0 || event.target.closest("button")) {
         return;
       }
 
