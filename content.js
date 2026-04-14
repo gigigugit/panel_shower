@@ -1,8 +1,12 @@
 (() => {
   const HOST_ID = "notes-reference-panel-root";
   const STORAGE_KEY = "notes-reference-panel-state-v1";
-  const MAX_Z_INDEX = "2147483647";
+  const MAX_Z_INDEX = 2147483647;
   const DELAYED_REFRESH_MS = [750, 2000];
+  const LENGTH_SCORE_DIVISOR = 40;
+  const MAX_LENGTH_SCORE = 60;
+  const LARGE_TEXT_THRESHOLD = 8000;
+  const LARGE_TEXT_PENALTY = 40;
   const DEFAULT_STATE = {
     top: 24,
     right: 24,
@@ -69,7 +73,7 @@
   }
 
   function normalizeText(text) {
-    return text.replace(/\s+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+    return text.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
   }
 
   function isElementVisible(element) {
@@ -151,12 +155,12 @@
       score += 20;
     }
 
-    if (length >= 40) {
-      score += Math.min(length / 40, 60);
+    if (length >= LENGTH_SCORE_DIVISOR) {
+      score += Math.min(length / LENGTH_SCORE_DIVISOR, MAX_LENGTH_SCORE);
     }
 
-    if (length > 8000) {
-      score -= 40;
+    if (length > LARGE_TEXT_THRESHOLD) {
+      score -= LARGE_TEXT_PENALTY;
     }
 
     return score;
@@ -333,7 +337,7 @@
     host.style.position = "fixed";
     host.style.top = `${state.top}px`;
     host.style.right = `${state.right}px`;
-    host.style.zIndex = MAX_Z_INDEX;
+    host.style.zIndex = `${MAX_Z_INDEX}`;
     host.style.pointerEvents = "auto";
 
     const shadow = host.attachShadow({ mode: "open" });
