@@ -12,7 +12,7 @@ Simple Chromium extension that injects a compact, draggable reference panel into
 1. Open `chrome://extensions/`.
 2. Enable **Developer mode**.
 3. Choose **Load unpacked**.
-4. Select `/home/runner/work/panel_shower/panel_shower`.
+4. Select the folder where you cloned this repository.
 
 ## Current assumptions
 

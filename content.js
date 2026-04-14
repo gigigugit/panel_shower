@@ -1,6 +1,6 @@
 (() => {
-  const HOST_ID = "panel-shower-root";
-  const STORAGE_KEY = "panel-shower-state-v1";
+  const HOST_ID = "notes-reference-panel-root";
+  const STORAGE_KEY = "notes-reference-panel-state-v1";
   const DEFAULT_STATE = {
     top: 24,
     right: 24,
@@ -220,7 +220,7 @@
         state = { ...DEFAULT_STATE, ...result[STORAGE_KEY] };
       }
     } catch (error) {
-      console.warn("Panel Shower: unable to load state", error);
+      console.warn("Notes Reference Panel: unable to load state", error);
     }
   }
 
@@ -233,7 +233,7 @@
         [STORAGE_KEY]: state
       });
     } catch (error) {
-      console.warn("Panel Shower: unable to save state", error);
+      console.warn("Notes Reference Panel: unable to save state", error);
     }
   }
 
