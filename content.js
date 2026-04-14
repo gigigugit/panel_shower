@@ -2,6 +2,7 @@
   const HOST_ID = "notes-reference-panel-root";
   const STORAGE_KEY = "notes-reference-panel-state-v1";
   const MAX_Z_INDEX = "2147483647";
+  const DELAYED_REFRESH_MS = [750, 2000];
   const DEFAULT_STATE = {
     top: 24,
     right: 24,
@@ -486,8 +487,9 @@
     createUi();
     refreshNotes();
     watchPage();
-    window.setTimeout(refreshNotes, 750);
-    window.setTimeout(refreshNotes, 2000);
+    DELAYED_REFRESH_MS.forEach((delay) => {
+      window.setTimeout(refreshNotes, delay);
+    });
     window.addEventListener("load", refreshNotes, { once: true });
   }
 
