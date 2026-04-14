@@ -54,10 +54,9 @@
     "div"
   ].join(", ");
 
-  if (window.__notesReferencePanelInstalled || document.getElementById(HOST_ID)) {
+  if (document.getElementById(HOST_ID)) {
     return;
   }
-  window.__notesReferencePanelInstalled = true;
 
   let state = { ...DEFAULT_STATE };
   let host;
@@ -275,7 +274,7 @@
 
     if (!text) {
       contentNode.textContent =
-        "Notes panel not detected. The panel will refresh automatically when Notes becomes available.";
+        "No Notes section found on this page. The panel will update automatically if Notes appear.";
       statusNode.textContent = "Waiting for Notes";
       return;
     }
@@ -353,7 +352,7 @@
           height: 240px;
           display: flex;
           flex-direction: column;
-          color: #e5eef7;
+          color: #f8fafc;
           background: rgba(15, 23, 42, 0.96);
           border: 1px solid rgba(148, 163, 184, 0.45);
           border-radius: 10px;
@@ -400,8 +399,8 @@
           border-radius: 6px;
           font-size: 10px;
           line-height: 1.4;
-          color: #cbd5e1;
-          background: rgba(51, 65, 85, 0.95);
+          color: #f8fafc;
+          background: rgba(30, 41, 59, 0.98);
           cursor: pointer;
         }
 

@@ -17,6 +17,7 @@ Simple Chromium extension that injects a compact, draggable reference panel into
 ## Current assumptions
 
 - The target site was not specified, so the extension is currently configured to run on all pages.
+- For production use, restrict the `matches` and `host_permissions` entries in `manifest.json` to the specific application domain instead of `<all_urls>`.
 - The page already contains a visible Notes area that can be discovered from labels, roles, ids, classes, `aria-*` attributes, or headings containing the word `Notes`.
 - The injected panel is read-only and intended only as a compact reference copy of the page's existing Notes text.
 - If the Notes area is rendered late or changes after load, the content script re-checks the page and refreshes the injected panel automatically.
