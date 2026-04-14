@@ -1,6 +1,7 @@
 (() => {
   const HOST_ID = "notes-reference-panel-root";
   const STORAGE_KEY = "notes-reference-panel-state-v1";
+  const MAX_Z_INDEX = "2147483647";
   const DEFAULT_STATE = {
     top: 24,
     right: 24,
@@ -48,10 +49,10 @@
     "div"
   ].join(", ");
 
-  if (window.__panelShowerInstalled || document.getElementById(HOST_ID)) {
+  if (window.__notesReferencePanelInstalled || document.getElementById(HOST_ID)) {
     return;
   }
-  window.__panelShowerInstalled = true;
+  window.__notesReferencePanelInstalled = true;
 
   let state = { ...DEFAULT_STATE };
   let host;
@@ -269,7 +270,7 @@
 
     if (!text) {
       contentNode.textContent =
-        "Notes panel not found yet. Keep this page open and the reference panel will refresh automatically when Notes becomes available.";
+        "Notes panel not detected. The panel will refresh automatically when Notes becomes available.";
       statusNode.textContent = "Waiting for Notes";
       return;
     }
@@ -331,7 +332,7 @@
     host.style.position = "fixed";
     host.style.top = `${state.top}px`;
     host.style.right = `${state.right}px`;
-    host.style.zIndex = "2147483647";
+    host.style.zIndex = MAX_Z_INDEX;
     host.style.pointerEvents = "auto";
 
     const shadow = host.attachShadow({ mode: "open" });
